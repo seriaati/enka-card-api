@@ -8,5 +8,5 @@
 	path = ENCard
 	url = https://github.com/seriaati/ENCard
 [submodule "enka-card"]
-	path = enka-card
+	path = enka_card
 	url = https://github.com/seriaati/enka-card
