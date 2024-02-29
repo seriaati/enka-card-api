@@ -61,6 +61,12 @@ preview = true
 [tool.ruff.lint.per-file-ignores]
 "**/__init__.py" = ["F403"]
 "playground.*.py" = ["ALL"]
+"EnkaCard/**/*.py" = ["ALL"]
+"StarRailCard/**/*.py" = ["ALL"]
 
 [tool.ruff.lint.flake8-type-checking]
 quote-annotations = true
+
+
+[tool.pyright]
+exclude = ["EnkaCard/**/*.py", ".venv/**/*.py", ".venv/**/*.pyi", "StarRailCard/**/*.py"]
