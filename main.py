@@ -1,9 +1,13 @@
 import io
-from typing import TYPE_CHECKING
+from contextlib import asynccontextmanager
+from typing import TYPE_CHECKING, Any
 
 import uvicorn
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.inmemory import InMemoryBackend
+from fastapi_cache.decorator import cache
 from pydantic import BaseModel
 
 from ENCard.encard import encard
@@ -12,6 +16,8 @@ from EnkaCard.enkacard import encbanner
 from StarRailCard.starrailcard import honkaicard
 
 if TYPE_CHECKING:
+    from collections.abc import AsyncGenerator
+
     from PIL import Image
 
 
@@ -43,7 +49,13 @@ class HattvrEnkaCardData(BaseModel):
     character_id: str
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> "AsyncGenerator[None, Any]":
+    FastAPICache.init(InMemoryBackend(), expire=60)
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/")
@@ -52,6 +64,7 @@ async def index() -> Response:
 
 
 @app.post("/star-rail-card")
+@cache()
 async def star_rail_card(data: StarRailCardData) -> Response:
     async with honkaicard.MiHoMoCard(
         lang=data.lang,
@@ -72,6 +85,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
 
 
 @app.post("/enka-card")
+@cache()
 async def enka_card(data: EnkaCardData) -> Response:
     async with encbanner.ENC(
         lang=data.lang,
@@ -92,6 +106,7 @@ async def enka_card(data: EnkaCardData) -> Response:
 
 
 @app.post("/en-card")
+@cache()
 async def en_card(data: ENCardData) -> Response:
     async with encard.ENCard(
         lang=data.lang,
@@ -111,6 +126,7 @@ async def en_card(data: ENCardData) -> Response:
 
 
 @app.post("/hattvr-enka-card")
+@cache()
 async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
     async with EnkaNetworkAPI(lang=Language(data.lang)) as client:
         showcase = await client.fetch_user(903393001)
@@ -125,6 +141,7 @@ async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
 
 
 @app.post("/en-card-profile")
+@cache()
 async def en_card_profile(
     data: ENCardData,
 ) -> Response:
