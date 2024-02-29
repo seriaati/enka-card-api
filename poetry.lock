@@ -479,23 +479,27 @@ name = "fastapi-cache2"
 version = "0.2.1"
 description = "Cache for FastAPI"
 optional = false
-python-versions = ">=3.7,<4.0"
-files = [
-    {file = "fastapi_cache2-0.2.1-py3-none-any.whl", hash = "sha256:532c24253ab8f162ba2f0a7dcccb98591424f0424c28da70346eb3c99daf2b06"},
-    {file = "fastapi_cache2-0.2.1.tar.gz", hash = "sha256:0c68803c5a7fdebfec3e4430fd08482c091344dc4dd55a00209a882220712f89"},
-]
+python-versions = "^3.7"
+files = []
+develop = false
 
 [package.dependencies]
-aiohttp = {version = ">=3.8.3", markers = "python_version >= \"3.11\""}
 fastapi = "*"
 pendulum = "*"
+typing-extensions = ">=4.1.0"
 uvicorn = "*"
 
 [package.extras]
-all = ["aiobotocore (>=1.4.1,<2.0.0)", "aiomcache", "redis (>=4.2.0rc1,<5.0.0)"]
-dynamodb = ["aiobotocore (>=1.4.1,<2.0.0)"]
+all = ["aiobotocore (>=1.4.1,<3.0.0)", "aiomcache", "redis (>=4.2.0rc1,<5.0.0)"]
+dynamodb = ["aiobotocore (>=1.4.1,<3.0.0)"]
 memcache = ["aiomcache"]
 redis = ["redis (>=4.2.0rc1,<5.0.0)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/long2ice/fastapi-cache"
+reference = "HEAD"
+resolved_reference = "91ba6d75524b1f6a17ae6a3300ab51b9aa1fcf71"
 
 [[package]]
 name = "filelock"
@@ -1759,4 +1763,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "32d6b7655abe314dc592c55516d1680ed94c3775b6444499fc9bb414f26808a9"
+content-hash = "147a7ac3621099e5366a3dc23964d0093669044df32ddb996918888400b7ea28"
