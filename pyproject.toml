@@ -19,10 +19,14 @@ asyncache = "^0.3.1"
 numpy = "^1.26.4"
 more-itertools = "^10.2.0"
 aiofiles = "^23.2.1"
-pydantic = "^2.6.3"
+pydantic = "v1.10.9"
 matplotlib = "^3.8.3"
 python-magic = "^0.4.27"
 python-magic-bin = "^0.4.14"
+beautifulsoup4 = "^4.12.3"
+honkairail = "^1.1.4"
+uvicorn = "^0.27.1"
+requests = "^2.31.0"
 
 [tool.poetry.group.dev]
 optional = true
@@ -63,10 +67,19 @@ preview = true
 "playground.*.py" = ["ALL"]
 "EnkaCard/**/*.py" = ["ALL"]
 "StarRailCard/**/*.py" = ["ALL"]
+"ENCard/**/*.py" = ["ALL"]
+"enka_card/**/*.py" = ["ALL"]
 
 [tool.ruff.lint.flake8-type-checking]
 quote-annotations = true
 
 
 [tool.pyright]
-exclude = ["EnkaCard/**/*.py", ".venv/**/*.py", ".venv/**/*.pyi", "StarRailCard/**/*.py"]
+exclude = [
+    "EnkaCard/**/*.py",
+    ".venv/**/*.py",
+    ".venv/**/*.pyi",
+    "StarRailCard/**/*.py",
+    "ENCard/**/*.py",
+    "enka_card/**/*.py"
+]
