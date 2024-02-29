@@ -48,7 +48,7 @@ app = FastAPI()
 
 @app.get("/")
 async def index() -> Response:
-    return Response(content="Enka Card API v0.1.0")
+    return Response(content="Enka Card API v1.0.0")
 
 
 @app.post("/star-rail-card")
