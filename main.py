@@ -73,6 +73,9 @@ async def star_rail_card(data: StarRailCardData) -> Response:
         characterImgs={data.character_name: data.character_art}
         if data.character_art is not None
         else None,
+        font="StarRailCard/starrailcard/src/assets/font/GenSenRoundedTW-B-01.ttf"
+        if data.lang in {"cn", "cht"}
+        else None,
     ) as draw:
         r = await draw.creat(data.uid)
         img = r.card[0].card  # type: ignore
