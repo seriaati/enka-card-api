@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from typing import TYPE_CHECKING, Any
 
 import uvicorn
+from enkacard2 import encbanner2
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
 from fastapi_cache import FastAPICache
@@ -12,7 +13,6 @@ from pydantic import BaseModel
 
 from ENCard.encard import encard
 from enka_card import generator
-from EnkaCard.enkacard import encbanner
 from StarRailCard.starrailcard import honkaicard
 
 if TYPE_CHECKING:
@@ -33,7 +33,8 @@ class EnkaCardData(BaseModel):
     uid: int
     lang: str
     character_id: str
-    character_art: str
+    character_art: str | None = None
+    template: int
 
 
 class ENCardData(BaseModel):
@@ -90,7 +91,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
 @app.post("/enka-card")
 @cache()
 async def enka_card(data: EnkaCardData) -> Response:
-    async with encbanner.ENC(
+    async with encbanner2.ENC(
         lang=data.lang,
         uid=data.uid,
         character_id=data.character_id,
@@ -98,7 +99,7 @@ async def enka_card(data: EnkaCardData) -> Response:
         if data.character_art is not None
         else None,
     ) as draw:
-        r = await draw.creat(template=1)
+        r = await draw.creat(template=data.template)
         img: Image.Image = r.card[0].card  # type: ignore
 
         bytes_obj = io.BytesIO()

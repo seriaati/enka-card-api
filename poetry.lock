@@ -441,6 +441,24 @@ files = [
 ]
 
 [[package]]
+name = "enkacard2"
+version = "2.0.2"
+description = "An asynchronous module and API that allows you to connect to your bot the generation of Genshin character cards from the Enka.Network website."
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "enkacard2-2.0.2-py3-none-any.whl", hash = "sha256:0404e636db456138fb43177331903eb63002800cdeb4528ded6e5a733c107a76"},
+    {file = "enkacard2-2.0.2.tar.gz", hash = "sha256:83e0f9f3b8933723a45fdf8c5f9639a058c71c9664a9ad5170627bcc0e1ff227"},
+]
+
+[package.dependencies]
+asyncache = ">=0.3.1,<0.4.0"
+cachetools = ">=5.2.0,<6.0.0"
+"enkanetwork.py" = ">=1.4.5,<2.0.0"
+numpy = ">=1.24.2,<2.0.0"
+Pillow = ">=10.0.1,<11.0.0"
+
+[[package]]
 name = "enkanetwork-py"
 version = "1.4.5"
 description = "Library for fetching JSON data from site https://enka.network/"
@@ -1763,4 +1781,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "147a7ac3621099e5366a3dc23964d0093669044df32ddb996918888400b7ea28"
+content-hash = "0f0240002484ec9cfc950d025316b3ad952e7f515124604a3c71b53d21d6c7d3"
