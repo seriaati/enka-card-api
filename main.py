@@ -132,8 +132,8 @@ async def en_card(data: ENCardData) -> Response:
 @cache()
 async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
     async with EnkaNetworkAPI(lang=Language(data.lang)) as client:
-        showcase = await client.fetch_user(903393001)
-        character = next(c for c in showcase.characters if c.id == data.character_id)
+        showcase = await client.fetch_user(data.uid)
+        character = next(c for c in showcase.characters if c.id == int(data.character_id))
         im = generator.generate_image(showcase, character, client.lang)
 
         bytes_obj = io.BytesIO()
