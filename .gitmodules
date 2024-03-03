@@ -1,6 +1,3 @@
-[submodule "EnkaCard"]
-	path = EnkaCard
-	url = https://github.com/seriaati/EnkaCard
 [submodule "StarRailCard"]
 	path = StarRailCard
 	url = https://github.com/seriaati/StarRailCard
