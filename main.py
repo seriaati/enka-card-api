@@ -14,6 +14,7 @@ from pydantic import BaseModel
 from ENCard.encard import encard
 from enka_card import generator
 from StarRailCard.starrailcard import honkaicard
+from utils import hex_to_rgb
 
 if TYPE_CHECKING:
     from collections.abc import AsyncGenerator
@@ -40,8 +41,9 @@ class EnkaCardData(BaseModel):
 class ENCardData(BaseModel):
     uid: int
     lang: str
-    character_name: str
+    character_id: str
     character_art: str | None = None
+    color: str | None = None
 
 
 class HattvrEnkaCardData(BaseModel):
@@ -114,10 +116,12 @@ async def enka_card(data: EnkaCardData) -> Response:
 async def en_card(data: ENCardData) -> Response:
     async with encard.ENCard(
         lang=data.lang,
-        characterName=data.character_name,
-        characterImgs={data.character_name: data.character_art}
+        character_id=data.character_id,
+        character_image={data.character_id: data.character_art}
         if data.character_art is not None
         else None,
+        adapt=True,
+        color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,
     ) as enc:
         result = await enc.create_cards(data.uid)
         img = result.card[0].card  # type: ignore
