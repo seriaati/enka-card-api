@@ -120,7 +120,6 @@ async def en_card(data: ENCardData) -> Response:
         character_image={data.character_id: data.character_art}
         if data.character_art is not None
         else None,
-        adapt=True,
         color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,
     ) as enc:
         result = await enc.create_cards(data.uid)
