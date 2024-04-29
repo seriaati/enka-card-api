@@ -1,13 +1,11 @@
 import asyncio
 
-from enkacard2 import encbanner2
-
-from ENCard.encard.encard import ENCard
+from enkanetwork import EnkaNetworkAPI
 
 
 async def update_assets() -> None:
-    await encbanner2.upload()
-    await ENCard().update_assets()
+    async with EnkaNetworkAPI() as client:
+        await client.update_assets()
 
 
 asyncio.run(update_assets())

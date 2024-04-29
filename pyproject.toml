@@ -13,7 +13,6 @@ readme = "README.md"
 python = "^3.11"
 fastapi = "^0.110.0"
 pillow = "^10.2.0"
-enkanetwork-py = "^1.4.5"
 cachetools = "^5.3.3"
 asyncache = "^0.3.1"
 numpy = "^1.26.4"
@@ -28,6 +27,7 @@ uvicorn = "^0.27.1"
 requests = "^2.31.0"
 fastapi-cache2 = {git = "https://github.com/long2ice/fastapi-cache"}
 enkacard2 = "^2.0.2"
+enkanetworkv2-py = {git = "https://github.com/DEViantUA/EnkaNetworkV2.py"}
 
 [tool.poetry.group.dev]
 optional = true
