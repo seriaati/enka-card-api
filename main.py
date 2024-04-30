@@ -11,9 +11,10 @@ from fastapi_cache.backends.inmemory import InMemoryBackend
 from fastapi_cache.decorator import cache
 from pydantic import BaseModel
 
+import StarRailCard
+import StarRailCard.starrailcard
 from ENCard.encard import encard
 from enka_card import generator
-from StarRailCard.starrailcard import honkaicard
 from utils import hex_to_rgb
 
 if TYPE_CHECKING:
@@ -26,7 +27,7 @@ class StarRailCardData(BaseModel):
     uid: int
     lang: str
     template: int
-    character_name: str
+    character_id: str
     character_art: str | None = None
 
 
@@ -69,22 +70,23 @@ async def index() -> Response:
 @app.post("/star-rail-card")
 @cache()
 async def star_rail_card(data: StarRailCardData) -> Response:
-    async with honkaicard.MiHoMoCard(
+    async with StarRailCard.starrailcard.Card(
         lang=data.lang,
-        template=data.template,
-        characterName=data.character_name,
-        characterImgs={data.character_name: data.character_art}
+        character_id=data.character_id,
+        character_art={data.character_id: data.character_art}
         if data.character_art is not None
         else None,
-        font="StarRailCard/starrailcard/src/assets/font/GenSenRoundedTW-B-01.ttf"
+        user_font="StarRailCard/starrailcard/src/assets/font/GenSenRoundedTW-B-01.ttf"
         if data.lang in {"cn", "cht"}
         else None,
+        boost_speed=True,
+        asset_save=True,
     ) as draw:
-        r = await draw.creat(data.uid)
-        img = r.card[0].card  # type: ignore
+        r = await draw.creat(data.uid, style=data.template)
+        img = r.card[0].card  # type: ignore [reportIndexIssue]
 
         bytes_obj = io.BytesIO()
-        img.save(bytes_obj, format="WEBP")
+        img.save(bytes_obj, format="WEBP")  # type: ignore [reportAttributeAccessIssue]
         bytes_obj.seek(0)
 
     return Response(content=bytes_obj.read(), media_type="image/webp")
