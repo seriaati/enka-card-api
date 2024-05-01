@@ -442,13 +442,13 @@ files = [
 
 [[package]]
 name = "enkacard"
-version = "3.3.6"
+version = "3.3.7"
 description = "An asynchronous module and API that allows you to connect to your bot the generation of Genshin character cards from the Enka.Network website."
 optional = false
 python-versions = "<4.0,>=3.10"
 files = [
-    {file = "enkacard-3.3.6-py3-none-any.whl", hash = "sha256:15752af04c7e6ad2f7745156f08ad0e6e9deba9f037c62cdbe836bbbbd9dccf8"},
-    {file = "enkacard-3.3.6.tar.gz", hash = "sha256:bafa145b4deb93dfa6752cfe1c9286ad90b0e76012b429edd0096081503797f6"},
+    {file = "enkacard-3.3.7-py3-none-any.whl", hash = "sha256:81ee60e3ea88f26d7db4e53fd2de42a47cb3fe75b8c07a8145d1aafffe52762f"},
+    {file = "enkacard-3.3.7.tar.gz", hash = "sha256:3ef2dbf1248c1e7d8cc8d7bba15d939994494a9a62c68c54894268f7b0389411"},
 ]
 
 [package.dependencies]
@@ -465,41 +465,8 @@ python-magic = {version = ">=0.4.27,<0.5.0", markers = "sys_platform == \"window
 python-magic-bin = {version = ">=0.4.14,<0.5.0", markers = "sys_platform == \"windows\""}
 
 [[package]]
-name = "enkacard2"
-version = "2.0.2"
-description = "An asynchronous module and API that allows you to connect to your bot the generation of Genshin character cards from the Enka.Network website."
-optional = false
-python-versions = ">=3.7,<4.0"
-files = [
-    {file = "enkacard2-2.0.2-py3-none-any.whl", hash = "sha256:0404e636db456138fb43177331903eb63002800cdeb4528ded6e5a733c107a76"},
-    {file = "enkacard2-2.0.2.tar.gz", hash = "sha256:83e0f9f3b8933723a45fdf8c5f9639a058c71c9664a9ad5170627bcc0e1ff227"},
-]
-
-[package.dependencies]
-asyncache = ">=0.3.1,<0.4.0"
-cachetools = ">=5.2.0,<6.0.0"
-"enkanetwork.py" = ">=1.4.5,<2.0.0"
-numpy = ">=1.24.2,<2.0.0"
-Pillow = ">=10.0.1,<11.0.0"
-
-[[package]]
-name = "enkanetwork-py"
-version = "1.4.5"
-description = "Library for fetching JSON data from site https://enka.network/"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "enkanetwork.py-1.4.5.tar.gz", hash = "sha256:bdc99679bec55017bcf951f636e31793e8cf1fdb040315a430adedb890c0a34d"},
-]
-
-[package.dependencies]
-aiohttp = "*"
-cachetools = "*"
-pydantic = "*"
-
-[[package]]
-name = "enkanetworkV2.py"
-version = "2.0.9"
+name = "enkanetworkv2.py"
+version = "2.1.0"
 description = "Library for fetching JSON data from site https://enka.network/"
 optional = false
 python-versions = ">=3.6"
@@ -509,14 +476,13 @@ develop = false
 [package.dependencies]
 aiohttp = "*"
 cachetools = "*"
-enkacard = "*"
 pydantic = "*"
 
 [package.source]
 type = "git"
-url = "https://github.com/DEViantUA/EnkaNetworkV2.py"
+url = "https://github.com/seriaati/EnkaNetworkV2.py"
 reference = "HEAD"
-resolved_reference = "32c41093e1a9f0f29a58bbe2b348c9b67d20be7b"
+resolved_reference = "315a25943b66c6c3ee40ea8df801e184fbe6df40"
 
 [[package]]
 name = "fastapi"
@@ -1840,4 +1806,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "296c0e5c2348481283b5a9d4f0edb06e3d51c05d201d2b034dc4c7f66f6ac5f5"
+content-hash = "5ff0eb079fed49d7ddd670b56a5cdb34545499e6c820ced63b7277a4247cca11"

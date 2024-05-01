@@ -26,8 +26,8 @@ honkairail = "^1.1.4"
 uvicorn = "^0.27.1"
 requests = "^2.31.0"
 fastapi-cache2 = {git = "https://github.com/long2ice/fastapi-cache"}
-enkacard2 = "^2.0.2"
-enkanetworkv2-py = {git = "https://github.com/DEViantUA/EnkaNetworkV2.py"}
+enkacard = "^3.3.7"
+enkanetworkv2-py = {git = "https://github.com/seriaati/EnkaNetworkV2.py"}
 
 [tool.poetry.group.dev]
 optional = true
