@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from typing import TYPE_CHECKING, Any
 
 import uvicorn
-from enkacard2 import encbanner2
+from enkacard import encbanner
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
 from fastapi_cache import FastAPICache
@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class StarRailCardData(BaseModel):
     uid: int
     lang: str
-    template: int
+    template: int  # 1~2
     character_id: str
     character_art: str | None = None
 
@@ -34,7 +34,7 @@ class StarRailCardData(BaseModel):
 class EnkaCardData(BaseModel):
     uid: int
     lang: str
-    character_id: str
+    character_id: str  # 1~2
     character_art: str | None = None
     template: int
 
@@ -95,7 +95,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
 @app.post("/enka-card")
 @cache()
 async def enka_card(data: EnkaCardData) -> Response:
-    async with encbanner2.ENC(
+    async with encbanner.ENC(
         lang=data.lang,
         uid=data.uid,
         character_id=data.character_id,
