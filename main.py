@@ -2,6 +2,7 @@ import io
 from contextlib import asynccontextmanager
 from typing import TYPE_CHECKING, Any
 
+import starrailcard
 import uvicorn
 from enkacard import encbanner
 from enkanetwork import EnkaNetworkAPI, Language
@@ -11,8 +12,6 @@ from fastapi_cache.backends.inmemory import InMemoryBackend
 from fastapi_cache.decorator import cache
 from pydantic import BaseModel
 
-import StarRailCard
-import StarRailCard.starrailcard
 from ENCard.encard import encard
 from enka_card import generator
 from utils import hex_to_rgb
@@ -26,7 +25,7 @@ if TYPE_CHECKING:
 class StarRailCardData(BaseModel):
     uid: int
     lang: str
-    template: int  # 1~2
+    template: int  # 1~3
     character_id: str
     character_art: str | None = None
 
@@ -70,7 +69,7 @@ async def index() -> Response:
 @app.post("/star-rail-card")
 @cache()
 async def star_rail_card(data: StarRailCardData) -> Response:
-    async with StarRailCard.starrailcard.Card(
+    async with starrailcard.Card(
         lang=data.lang,
         character_id=data.character_id,
         character_art={data.character_id: data.character_art}
@@ -82,7 +81,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
         boost_speed=True,
         asset_save=True,
     ) as draw:
-        r = await draw.creat(data.uid, style=data.template)
+        r = await draw.create(data.uid, style=data.template)
         img = r.card[0].card  # type: ignore [reportIndexIssue]
 
         bytes_obj = io.BytesIO()

@@ -28,6 +28,7 @@ requests = "^2.31.0"
 fastapi-cache2 = {git = "https://github.com/long2ice/fastapi-cache"}
 enkacard = "^3.3.7"
 enkanetworkv2-py = {git = "https://github.com/seriaati/EnkaNetworkV2.py"}
+starrailcard = "^2.1.8"
 
 [tool.poetry.group.dev]
 optional = true
