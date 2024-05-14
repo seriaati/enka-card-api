@@ -148,20 +148,4 @@ async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
     return Response(content=bytes_obj.read(), media_type="image/webp")
 
 
-@app.post("/en-card-profile")
-@cache()
-async def en_card_profile(
-    data: ENCardData,
-) -> Response:
-    async with encard.ENCard(lang=data.lang) as enc:
-        result = await enc.create_profile(data.uid)
-        img = result.card  # type: ignore
-
-        bytes_obj = io.BytesIO()
-        img.save(bytes_obj, format="WEBP")
-        bytes_obj.seek(0)
-
-    return Response(content=bytes_obj.read(), media_type="image/webp")
-
-
 uvicorn.run(app, port=7652)
