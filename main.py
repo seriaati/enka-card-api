@@ -28,6 +28,7 @@ class StarRailCardData(BaseModel):
     template: Literal[1, 2, 3]
     character_id: str
     character_art: str | None = None
+    color: str | None = None
 
 
 class EnkaCardData(BaseModel):
@@ -79,6 +80,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
             user_font="StarRailCard/starrailcard/src/assets/font/GenSenRoundedTW-B-01.ttf"
             if data.lang in {"cn", "cht"}
             else None,
+            color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,  # type: ignore [reportArgumentType]
             boost_speed=True,
             asset_save=True,
         ) as draw:
