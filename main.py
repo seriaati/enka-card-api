@@ -77,7 +77,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
             character_art={data.character_id: data.character_art}
             if data.character_art is not None
             else None,
-            user_font="StarRailCard/starrailcard/src/assets/font/GenSenRoundedTW-B-01.ttf"
+            user_font="fonts/GenSenRoundedTW-B-01.ttf"
             if data.lang in {"cn", "cht"}
             else None,
             color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,  # type: ignore [reportArgumentType]
