@@ -1,65 +1,23 @@
+from __future__ import annotations
+
 import io
-from contextlib import asynccontextmanager
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING
 
 import starrailcard
 import uvicorn
 from enkacard import encbanner
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
-from fastapi_cache import FastAPICache
-from fastapi_cache.backends.inmemory import InMemoryBackend
-from fastapi_cache.decorator import cache
-from pydantic import BaseModel
 
 from ENCard.encard import encard
 from enka_card import generator
-from utils import hex_to_rgb
+from utils import hex_to_rgb, update_enc_characters
 
 if TYPE_CHECKING:
-    from collections.abc import AsyncGenerator
-
-    from PIL import Image
+    from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData
 
 
-class StarRailCardData(BaseModel):
-    uid: int
-    lang: str
-    template: Literal[1, 2, 3]
-    character_id: str
-    character_art: str | None = None
-    color: str | None = None
-
-
-class EnkaCardData(BaseModel):
-    uid: int
-    lang: str
-    character_id: str
-    character_art: str | None = None
-    template: Literal[1, 2]
-
-
-class ENCardData(BaseModel):
-    uid: int
-    lang: str
-    character_id: str
-    character_art: str | None = None
-    color: str | None = None
-
-
-class HattvrEnkaCardData(BaseModel):
-    uid: int
-    lang: str
-    character_id: str
-
-
-@asynccontextmanager
-async def lifespan(_: FastAPI) -> "AsyncGenerator[None, Any]":
-    FastAPICache.init(InMemoryBackend(), expire=60)
-    yield
-
-
-app = FastAPI(lifespan=lifespan)
+app = FastAPI()
 
 
 @app.get("/")
@@ -68,7 +26,6 @@ async def index() -> Response:
 
 
 @app.post("/star-rail-card")
-@cache()
 async def star_rail_card(data: StarRailCardData) -> Response:
     try:
         async with starrailcard.Card(
@@ -77,9 +34,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
             character_art={data.character_id: data.character_art}
             if data.character_art is not None
             else None,
-            user_font="fonts/GenSenRoundedTW-B-01.ttf"
-            if data.lang in {"cn", "cht"}
-            else None,
+            user_font="fonts/GenSenRoundedTW-B-01.ttf" if data.lang in {"cn", "cht"} else None,
             color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,  # type: ignore [reportArgumentType]
             boost_speed=True,
             asset_save=True,
@@ -97,7 +52,6 @@ async def star_rail_card(data: StarRailCardData) -> Response:
 
 
 @app.post("/enka-card")
-@cache()
 async def enka_card(data: EnkaCardData) -> Response:
     try:
         async with encbanner.ENC(
@@ -108,11 +62,14 @@ async def enka_card(data: EnkaCardData) -> Response:
             if data.character_art is not None
             else None,
         ) as draw:
+            if data.owner is not None:
+                await update_enc_characters(data, draw)
+
             r = await draw.creat(template=data.template)
-            img: Image.Image = r.card[0].card  # type: ignore
+            img = r.card[0].card  # type: ignore
 
             bytes_obj = io.BytesIO()
-            img.save(bytes_obj, format="WEBP")
+            img.save(bytes_obj, format="WEBP")  # type: ignore
             bytes_obj.seek(0)
 
         return Response(content=bytes_obj.read(), media_type="image/webp")
@@ -121,7 +78,6 @@ async def enka_card(data: EnkaCardData) -> Response:
 
 
 @app.post("/en-card")
-@cache()
 async def en_card(data: ENCardData) -> Response:
     try:
         async with encard.ENCard(
@@ -132,6 +88,9 @@ async def en_card(data: ENCardData) -> Response:
             else None,
             color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,
         ) as enc:
+            if data.owner is not None:
+                await update_enc_characters(data, enc)
+
             result = await enc.create_cards(data.uid)
             img = result.card[0].card  # type: ignore
 
@@ -145,7 +104,6 @@ async def en_card(data: ENCardData) -> Response:
 
 
 @app.post("/hattvr-enka-card")
-@cache()
 async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
     try:
         async with EnkaNetworkAPI(lang=Language(data.lang)) as client:
