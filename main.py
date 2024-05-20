@@ -63,7 +63,8 @@ async def enka_card(data: EnkaCardData) -> Response:
             else None,
         ) as draw:
             if data.owner is not None:
-                await update_enc_characters(data, draw)
+                assert draw.enc is not None
+                draw.enc.characters = await update_enc_characters(data, draw.enc.characters)
 
             r = await draw.creat(template=data.template)
             img = r.card[0].card  # type: ignore
@@ -87,11 +88,12 @@ async def en_card(data: ENCardData) -> Response:
             if data.character_art is not None
             else None,
             color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,
-        ) as enc:
+        ) as draw:
             if data.owner is not None:
-                await update_enc_characters(data, enc)
+                assert draw.enc is not None
+                draw.enc.characters = await update_enc_characters(data, draw.enc.characters)
 
-            result = await enc.create_cards(data.uid)
+            result = await draw.create_cards(data.uid)
             img = result.card[0].card  # type: ignore
 
             bytes_obj = io.BytesIO()
@@ -108,6 +110,9 @@ async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
     try:
         async with EnkaNetworkAPI(lang=Language(data.lang)) as client:
             showcase = await client.fetch_user(data.uid)
+            if data.owner is not None:
+                showcase.characters = await update_enc_characters(data, showcase.characters)
+
             character = next(c for c in showcase.characters if c.id == int(data.character_id))
             im = generator.generate_image(showcase, character, client.lang)
 

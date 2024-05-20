@@ -5,9 +5,8 @@ from typing import TYPE_CHECKING
 from enkanetwork import EnkaNetworkAPI, Language
 
 if TYPE_CHECKING:
-    from enkacard import encbanner
+    from enkanetwork.model import CharacterInfo
 
-    from ENCard.encard import encard
     from models import ENCardData, EnkaCardData, HattvrEnkaCardData
 
 
@@ -17,8 +16,8 @@ def hex_to_rgb(hex_color: str) -> tuple[int, ...]:
 
 
 async def update_enc_characters(
-    data: EnkaCardData | ENCardData | HattvrEnkaCardData, draw: encbanner.ENC | encard.ENCard
-) -> None:
+    data: EnkaCardData | ENCardData | HattvrEnkaCardData, characters: list[CharacterInfo]
+) -> list[CharacterInfo]:
     assert data.owner is not None
 
     async with EnkaNetworkAPI(lang=Language(data.lang)) as client:
@@ -27,9 +26,10 @@ async def update_enc_characters(
         assert character_builds is not None
         build = next(b for b in character_builds if b.id == data.owner.build_id)
 
-    assert draw.enc is not None
-    for character in draw.enc.characters:
+    for character in characters:
         if str(character.id) == data.character_id:
-            draw.enc.characters.remove(character)
+            characters.remove(character)
             break
-    draw.enc.characters.append(build.avatar_data)
+    characters.append(build.avatar_data)
+
+    return characters
