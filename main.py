@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import io
-from typing import TYPE_CHECKING
 
 import starrailcard
 import uvicorn
@@ -11,11 +10,8 @@ from fastapi import FastAPI, Response
 
 from ENCard.encard import encard
 from enka_card import generator
+from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData  # noqa: TCH001
 from utils import hex_to_rgb, update_enc_characters
-
-if TYPE_CHECKING:
-    from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData
-
 
 app = FastAPI()
 
