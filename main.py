@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import io
+import logging
 
 import starrailcard
 import uvicorn
@@ -44,6 +45,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
 
         return Response(content=bytes_obj.read(), media_type="image/webp")
     except Exception as e:
+        logging.exception("StarRailCard error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
 
 
@@ -71,6 +73,7 @@ async def enka_card(data: EnkaCardData) -> Response:
 
         return Response(content=bytes_obj.read(), media_type="image/webp")
     except Exception as e:
+        logging.exception("EnkaCard error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
 
 
@@ -78,6 +81,7 @@ async def enka_card(data: EnkaCardData) -> Response:
 async def en_card(data: ENCardData) -> Response:
     try:
         async with encard.ENCard(
+            uid=data.uid,
             lang=data.lang,
             character_id=data.character_id,
             character_image={data.character_id: data.character_art}
@@ -98,6 +102,7 @@ async def en_card(data: ENCardData) -> Response:
 
         return Response(content=bytes_obj.read(), media_type="image/webp")
     except Exception as e:
+        logging.exception("ENCard error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
 
 
@@ -118,6 +123,7 @@ async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
 
         return Response(content=bytes_obj.read(), media_type="image/webp")
     except Exception as e:
+        logging.exception("Hattvr Enka card error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
 
 
