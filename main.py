@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import io
 import logging
 
@@ -115,7 +116,7 @@ async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
                 showcase.characters = await update_enc_characters(data, showcase.characters)
 
             character = next(c for c in showcase.characters if c.id == int(data.character_id))
-            im = generator.generate_image(showcase, character, client.lang)
+            im = await asyncio.to_thread(generator.generate_image, showcase, character, client.lang)
 
             bytes_obj = io.BytesIO()
             im.save(bytes_obj, format="WEBP")
