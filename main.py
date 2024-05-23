@@ -9,11 +9,12 @@ import uvicorn
 from enkacard import encbanner
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
+from starrailcard.src.api.api import ApiMiHoMo
 
 from ENCard.encard import encard
 from enka_card import generator
 from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData  # noqa: TCH001
-from utils import hex_to_rgb, update_enc_characters
+from utils import hex_to_rgb, update_enc_characters, update_hsr_characters
 
 app = FastAPI()
 
@@ -26,23 +27,50 @@ async def index() -> Response:
 @app.post("/star-rail-card")
 async def star_rail_card(data: StarRailCardData) -> Response:
     try:
-        async with starrailcard.Card(
-            lang=data.lang,
-            character_id=data.character_id,
-            character_art={data.character_id: data.character_art}
-            if data.character_art is not None
-            else None,
-            user_font="fonts/GenSenRoundedTW-B-01.ttf" if data.lang in {"cn", "cht"} else None,
-            color={data.character_id: hex_to_rgb(data.color)} if data.color is not None else None,  # type: ignore [reportArgumentType]
-            boost_speed=True,
-            asset_save=True,
-        ) as draw:
-            r = await draw.create(data.uid, style=data.template)
-            img = r.card[0].card  # type: ignore [reportIndexIssue]
+        character_art = (
+            {data.character_id: data.character_art} if data.character_art is not None else None
+        )
+        user_font = "fonts/GenSenRoundedTW-B-01.ttf" if data.lang in {"cn", "cht"} else None
+        color = {data.character_id: hex_to_rgb(data.color)} if data.color is not None else None
 
-            bytes_obj = io.BytesIO()
-            img.save(bytes_obj, format="WEBP")  # type: ignore [reportAttributeAccessIssue]
-            bytes_obj.seek(0)
+        if data.cookies is not None:
+            cookie_pairs = data.cookies.split("; ")
+            cookie_dict = dict(pair.split("=", 1) for pair in cookie_pairs)
+            async with starrailcard.HoYoCard(
+                cookie_dict,
+                lang=data.lang,
+                character_art=character_art,
+                character_id=data.character_id,
+                color=color,  # type: ignore [reportArgumentType]
+                boost_speed=True,
+                asset_save=True,
+            ) as draw:
+                r = await draw.create(data.uid, style=data.template)
+        else:
+            mihomo = ApiMiHoMo(uid=str(data.uid), lang=data.lang)
+            api_data = await mihomo.get()
+            assert api_data is not None
+
+            if data.owner is not None:
+                api_data.characters = await update_hsr_characters(data, api_data.characters)
+
+            async with starrailcard.Card(
+                lang=data.lang,
+                character_id=data.character_id,
+                character_art=character_art,
+                user_font=user_font,
+                color=color,  # type: ignore [reportArgumentType]
+                boost_speed=True,
+                asset_save=True,
+                api_data=api_data,
+            ) as draw:
+                r = await draw.create(data.uid, style=data.template)
+
+        img = r.card[0].card  # type: ignore [reportIndexIssue]
+
+        bytes_obj = io.BytesIO()
+        img.save(bytes_obj, format="WEBP")  # type: ignore [reportAttributeAccessIssue]
+        bytes_obj.seek(0)
 
         return Response(content=bytes_obj.read(), media_type="image/webp")
     except Exception as e:

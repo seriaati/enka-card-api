@@ -17,6 +17,7 @@ class StarRailCardData(BaseModel):
     character_art: str | None = None
     color: str | None = None
     owner: OwnerInfo | None = None
+    cookies: str | None = None
 
 
 class EnkaCardData(BaseModel):
