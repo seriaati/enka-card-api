@@ -27,6 +27,7 @@ requests = "^2.31.0"
 enkacard = "^3.3.7"
 enkanetworkv2-py = {git = "https://github.com/seriaati/EnkaNetworkV2.py"}
 starrailcard = "^2.1.8"
+genshin = "^1.6.3"
 
 [tool.poetry.group.dev]
 optional = true
@@ -48,6 +49,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 100
+exclude = ["ENCard", "enka_card"]
 
 [tool.ruff.lint]
 select = [
