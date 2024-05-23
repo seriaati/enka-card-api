@@ -25,16 +25,15 @@ beautifulsoup4 = "^4.12.3"
 uvicorn = "^0.27.1"
 requests = "^2.31.0"
 enkacard = "^3.3.7"
-enkanetworkv2-py = {git = "https://github.com/seriaati/EnkaNetworkV2.py"}
-starrailcard = "^2.1.8"
-genshin = "^1.6.3"
+starrailcard = {git = "https://github.com/DEViantUA/StarRailCard"}
+genshin = {git = "https://github.com/thesadru/genshin.py", rev = "dev"}
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.2.1"
-pre-commit = "^3.6.1"
+ruff = "^0.4.5"
+pre-commit = "^3.7.1"
 
 [tool.poetry.group.linux]
 optional = true
