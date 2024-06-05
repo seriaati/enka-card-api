@@ -679,7 +679,7 @@ files = [
 
 [[package]]
 name = "genshin"
-version = "1.6.3"
+version = "1.7.0"
 description = "An API wrapper for Genshin Impact."
 optional = false
 python-versions = ">=3.8"
@@ -772,17 +772,17 @@ tifffile = ["tifffile"]
 
 [[package]]
 name = "imageio-ffmpeg"
-version = "0.5.0"
+version = "0.5.1"
 description = "FFMPEG wrapper for Python"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "imageio-ffmpeg-0.5.0.tar.gz", hash = "sha256:75c9c45079510cfeb4849a17fcd3edd4f14062ea6b69c5b62695fb2075295c87"},
-    {file = "imageio_ffmpeg-0.5.0-py3-none-macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:e9aba9cdd01164a50a4cfb1b825fc8769151a0d3b5b5a7d5d50ff9fcda7eee9c"},
-    {file = "imageio_ffmpeg-0.5.0-py3-none-manylinux2010_x86_64.whl", hash = "sha256:ba55f392ee5db9eb0a6d7699e0060a2edcaa7dbc740ca29671bdc8dbb763ca3b"},
-    {file = "imageio_ffmpeg-0.5.0-py3-none-manylinux2014_aarch64.whl", hash = "sha256:9c813be7d6a24236bb68aeab249ea67f5a7fdf7d86988855578247694c42e94a"},
-    {file = "imageio_ffmpeg-0.5.0-py3-none-win32.whl", hash = "sha256:c4a3b32fc38d4a26c15582bf12246ddae060932889da5c9da487cc675740039b"},
-    {file = "imageio_ffmpeg-0.5.0-py3-none-win_amd64.whl", hash = "sha256:8135f4d146094b62b31721ca53fe943f4134e3578e22015468e3df595217c24b"},
+    {file = "imageio-ffmpeg-0.5.1.tar.gz", hash = "sha256:0ed7a9b31f560b0c9d929c5291cd430edeb9bed3ce9a497480e536dd4326484c"},
+    {file = "imageio_ffmpeg-0.5.1-py3-none-macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:1460e84712b9d06910c1f7bb524096b0341d4b7844cea6c20e099d0a24e795b1"},
+    {file = "imageio_ffmpeg-0.5.1-py3-none-manylinux2010_x86_64.whl", hash = "sha256:5289f75c7f755b499653f3209fea4efd1430cba0e39831c381aad2d458f7a316"},
+    {file = "imageio_ffmpeg-0.5.1-py3-none-manylinux2014_aarch64.whl", hash = "sha256:7fa9132a291d5eb28c44553550deb40cbdab831f2a614e55360301a6582eb205"},
+    {file = "imageio_ffmpeg-0.5.1-py3-none-win32.whl", hash = "sha256:89efe2c79979d8174ba8476deb7f74d74c331caee3fb2b65ba2883bec0737625"},
+    {file = "imageio_ffmpeg-0.5.1-py3-none-win_amd64.whl", hash = "sha256:1521e79e253bedbdd36a547e0cbd94a025ba0b558e17f08fea687d805a0e4698"},
 ]
 
 [package.dependencies]
@@ -1089,13 +1089,13 @@ files = [
 
 [[package]]
 name = "nodeenv"
-version = "1.9.0"
+version = "1.9.1"
 description = "Node.js virtual environment builder"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
-    {file = "nodeenv-1.9.0-py2.py3-none-any.whl", hash = "sha256:508ecec98f9f3330b636d4448c0f1a56fc68017c68f1e7857ebc52acf0eb879a"},
-    {file = "nodeenv-1.9.0.tar.gz", hash = "sha256:07f144e90dae547bf0d4ee8da0ee42664a42a04e02ed68e06324348dafe4bdb1"},
+    {file = "nodeenv-1.9.1-py2.py3-none-any.whl", hash = "sha256:ba11c9782d29c27c70ffbdda2d7415098754709be8a7056d79a737cd901155c9"},
+    {file = "nodeenv-1.9.1.tar.gz", hash = "sha256:6ec12890a2dab7946721edbfbcd91f3319c6ccc9aec47be7c7e6b7011ee6645f"},
 ]
 
 [[package]]
@@ -1587,9 +1587,9 @@ pydantic = "*"
 
 [package.source]
 type = "git"
-url = "https://github.com/DEViantUA/StarRailCard"
+url = "https://github.com/seriaati/StarRailCard"
 reference = "HEAD"
-resolved_reference = "d7d470ecd7c5607f62644c37d8e801ac10cc8192"
+resolved_reference = "dfaee6dac78308d526a32cb62520a8f17e56ade7"
 
 [[package]]
 name = "tqdm"
@@ -1827,4 +1827,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "a951dc9c095bb72c9d89cac05c3ffd7a890859c4b4cfb4a649ba7cfd024795d3"
+content-hash = "2154ab64cc4cb47aab4a466552e9d0064b169ba960a32acf160efaa120816024"

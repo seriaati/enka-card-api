@@ -26,7 +26,7 @@ pydantic = "v1.10.9"
 python = "^3.11"
 python-magic = "^0.4.27"
 requests = "^2.31.0"
-starrailcard = {git = "https://github.com/DEViantUA/StarRailCard"}
+starrailcard = {git = "https://github.com/seriaati/StarRailCard"}
 uvicorn = "^0.27.1"
 
 [tool.poetry.group.dev]
