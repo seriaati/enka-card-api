@@ -28,6 +28,7 @@ python-magic = "^0.4.27"
 requests = "^2.31.0"
 starrailcard = {git = "https://github.com/seriaati/StarRailCard"}
 uvicorn = "^0.27.1"
+fake-useragent = "^1.5.1"
 
 [tool.poetry.group.dev]
 optional = true
