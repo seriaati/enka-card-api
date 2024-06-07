@@ -25,14 +25,19 @@ async def update_hsr_characters(
     enka = ApiEnkaNetwork(uid=data.uid, lang=data.lang)
     mihomo_data = await enka.get_build(name=data.owner.username, hash=data.owner.hash)
     assert mihomo_data is not None
-    build = next(b for b in mihomo_data.characters if b.id == data.owner.build_id)
+    build = None
+    for c in mihomo_data.characters:
+        if c.build is not None and c.build["id"] == data.owner.build_id:
+            build = c
+            break
 
     for character in characters:
         if character.id == data.character_id:
             characters.remove(character)
             break
 
-    characters.append(build)
+    if build is not None:
+        characters.append(build)
     return characters
 
 

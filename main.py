@@ -9,7 +9,7 @@ import uvicorn
 from enkacard import encbanner
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
-from starrailcard.src.api.api import ApiMiHoMo
+from starrailcard.src.api.enka import ApiEnkaNetwork
 
 from ENCard.encard import encard
 from enka_card import generator
@@ -47,9 +47,11 @@ async def star_rail_card(data: StarRailCardData) -> Response:
             ) as draw:
                 r = await draw.create(data.uid, style=data.template)
         else:
-            mihomo = ApiMiHoMo(uid=str(data.uid), lang=data.lang)
-            api_data = await mihomo.get()
-            assert api_data is not None
+            enka = ApiEnkaNetwork(uid=data.uid, lang=data.lang)
+            api_data = await enka.get()
+            if api_data is None:
+                msg = "Failed to get data from API, please try again"
+                raise ValueError(msg)  # noqa: TRY301
 
             if data.owner is not None:
                 api_data.characters = await update_hsr_characters(data, api_data.characters)
