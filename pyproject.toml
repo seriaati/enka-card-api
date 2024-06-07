@@ -17,7 +17,7 @@ beautifulsoup4 = "^4.12.3"
 cachetools = "^5.3.3"
 enkacard = "^3.3.7"
 fastapi = "^0.110.0"
-genshin = {git = "https://github.com/thesadru/genshin.py", rev = "dev"}
+genshin = {git = "https://github.com/thesadru/genshin.py"}
 matplotlib = "^3.8.3"
 more-itertools = "^10.2.0"
 numpy = "^1.26.4"
