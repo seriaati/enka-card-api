@@ -711,7 +711,7 @@ cookies = ["browser-cookie3"]
 type = "git"
 url = "https://github.com/thesadru/genshin.py"
 reference = "HEAD"
-resolved_reference = "ff53348da2cdc8bcf52bc3d3f70e10fd48d3c950"
+resolved_reference = "06add94e29d28c022275f7891b5a444dd92d798e"
 
 [[package]]
 name = "h11"
@@ -1576,12 +1576,14 @@ full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7
 
 [[package]]
 name = "starrailcard"
-version = "2.1.5"
+version = "2.2.2"
 description = "This Python module provides the ability to create captivating character cards based on player data from Honkai Star Rail, obtained through their unique user identifiers (UIDs). StarRailCard streamlines the process of generating personalized character assembly cards, relying on the information provided by players."
 optional = false
-python-versions = "^3.9"
-files = []
-develop = false
+python-versions = ">=3.9"
+files = [
+    {file = "starrailcard-2.2.2-py3-none-any.whl", hash = "sha256:11eecef0f3b7048ad6e97602cd71a651302af49d8f383ba890d58522cf15eaba"},
+    {file = "starrailcard-2.2.2.tar.gz", hash = "sha256:6d7f09a65aa3d5ed5bbbcb8ce064548146be340976c5785d075929222fae2843"},
+]
 
 [package.dependencies]
 aiofiles = "*"
@@ -1595,12 +1597,6 @@ moviepy = "*"
 numpy = "*"
 Pillow = "*"
 pydantic = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/seriaati/StarRailCard"
-reference = "HEAD"
-resolved_reference = "ee76dc47557a40e09198d0d4d17af08b20761840"
 
 [[package]]
 name = "tqdm"
@@ -1838,4 +1834,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "91c58ecbc57a6ad84f719c49a5a25cc208c4838b2bbd2ee030a782b022daff1d"
+content-hash = "d846db2613adce7ec878702d4c8d050d958d9010d641db1a500e02ec1bafd578"
