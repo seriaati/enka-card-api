@@ -1156,13 +1156,13 @@ files = [
 
 [[package]]
 name = "packaging"
-version = "24.0"
+version = "24.1"
 description = "Core utilities for Python packages"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
-    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
+    {file = "packaging-24.1-py3-none-any.whl", hash = "sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124"},
+    {file = "packaging-24.1.tar.gz", hash = "sha256:026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"},
 ]
 
 [[package]]
@@ -1576,14 +1576,12 @@ full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7
 
 [[package]]
 name = "starrailcard"
-version = "2.2.2"
+version = "2.1.5"
 description = "This Python module provides the ability to create captivating character cards based on player data from Honkai Star Rail, obtained through their unique user identifiers (UIDs). StarRailCard streamlines the process of generating personalized character assembly cards, relying on the information provided by players."
 optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "starrailcard-2.2.2-py3-none-any.whl", hash = "sha256:11eecef0f3b7048ad6e97602cd71a651302af49d8f383ba890d58522cf15eaba"},
-    {file = "starrailcard-2.2.2.tar.gz", hash = "sha256:6d7f09a65aa3d5ed5bbbcb8ce064548146be340976c5785d075929222fae2843"},
-]
+python-versions = "^3.9"
+files = []
+develop = false
 
 [package.dependencies]
 aiofiles = "*"
@@ -1597,6 +1595,12 @@ moviepy = "*"
 numpy = "*"
 Pillow = "*"
 pydantic = "*"
+
+[package.source]
+type = "git"
+url = "https://github.com/seriaati/StarRailCard"
+reference = "HEAD"
+resolved_reference = "ad2e8a2aed898972291edd9d264170373389de67"
 
 [[package]]
 name = "tqdm"
@@ -1834,4 +1838,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "d846db2613adce7ec878702d4c8d050d958d9010d641db1a500e02ec1bafd578"
+content-hash = "91c58ecbc57a6ad84f719c49a5a25cc208c4838b2bbd2ee030a782b022daff1d"
