@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import io
 import logging
+import warnings
 
 import starrailcard
 import uvicorn
@@ -15,6 +16,8 @@ from ENCard.encard import encard
 from enka_card import generator
 from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData  # noqa: TCH001
 from utils import hex_to_rgb, update_enc_characters, update_hsr_characters
+
+warnings.filterwarnings("ignore")
 
 app = FastAPI()
 
