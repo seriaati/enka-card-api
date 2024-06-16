@@ -690,7 +690,7 @@ files = [
 
 [[package]]
 name = "genshin"
-version = "1.7.0"
+version = "1.7.1"
 description = "An API wrapper for Genshin Impact."
 optional = false
 python-versions = ">=3.8"
@@ -711,7 +711,7 @@ cookies = ["browser-cookie3"]
 type = "git"
 url = "https://github.com/thesadru/genshin.py"
 reference = "HEAD"
-resolved_reference = "01200ad3a0930eb7ff3e9ceda50d047d6c500bc1"
+resolved_reference = "944fd6a32aad1b2c8fec958541a2769aa49ad8b2"
 
 [[package]]
 name = "h11"
@@ -1600,7 +1600,7 @@ pydantic = "*"
 type = "git"
 url = "https://github.com/seriaati/StarRailCard"
 reference = "HEAD"
-resolved_reference = "6eb783d9f44ceb4b7ff780effdf9db91dad687db"
+resolved_reference = "075621fb3e2413a92f6e82cc9ba5fdf77ea1faab"
 
 [[package]]
 name = "tqdm"
