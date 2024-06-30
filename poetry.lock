@@ -1600,7 +1600,7 @@ pydantic = "*"
 type = "git"
 url = "https://github.com/seriaati/StarRailCard"
 reference = "HEAD"
-resolved_reference = "075621fb3e2413a92f6e82cc9ba5fdf77ea1faab"
+resolved_reference = "42a4282820e099cd761abb9ec3bf06c0e9019995"
 
 [[package]]
 name = "tqdm"
