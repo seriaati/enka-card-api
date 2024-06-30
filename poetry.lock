@@ -1669,7 +1669,7 @@ pydantic = "*"
 type = "git"
 url = "https://github.com/seriaati/StarRailCard"
 reference = "fix/parse-issues"
-resolved_reference = "75969ff06f964b59a2d23bbc67c39ac168292312"
+resolved_reference = "418f11058d34955cc31fbbd9157822a967a80eec"
 
 [[package]]
 name = "tqdm"
