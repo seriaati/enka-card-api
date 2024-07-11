@@ -29,7 +29,7 @@ python = "^3.11"
 python-magic = "^0.4.27"
 requests = "^2.31.0"
 starrailcard = {git = "https://github.com/seriaati/StarRailCard", branch = "fix/parse-issues"}
-uvicorn = "^0.27.1"
+uvicorn = "^0.30.0"
 
 [tool.poetry.group.dev]
 optional = true
