@@ -22,7 +22,7 @@ fastapi = "^0.111.0"
 genshin = {git = "https://github.com/thesadru/genshin.py"}
 matplotlib = "^3.8.3"
 more-itertools = "^10.2.0"
-numpy = "^1.26.4"
+numpy = "^2.0.0"
 pillow = "^10.2.0"
 pydantic = "^2.7.4"
 python = "^3.11"
