@@ -3,7 +3,8 @@
         {
             "name": "enka-card-api",
             "script": "./main.py",
-            "interpreter": "./.venv/bin/python"
+            "interpreter": "./.venv/bin/python",
+            "cron_restart": "0 0 * * *"
         }
     ]
 }
