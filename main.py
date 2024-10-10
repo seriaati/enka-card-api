@@ -74,10 +74,10 @@ async def star_rail_card(data: StarRailCardData) -> Response:
         img = r.card[0].card  # type: ignore [reportIndexIssue]
 
         bytes_obj = io.BytesIO()
-        img.save(bytes_obj, format="WEBP")  # type: ignore [reportAttributeAccessIssue]
+        img.save(bytes_obj, format="PNG")  # type: ignore [reportAttributeAccessIssue]
         bytes_obj.seek(0)
 
-        return Response(content=bytes_obj.read(), media_type="image/webp")
+        return Response(content=bytes_obj.read(), media_type="image/png")
     except Exception as e:
         logging.exception("StarRailCard error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
@@ -102,10 +102,10 @@ async def enka_card(data: EnkaCardData) -> Response:
             img = r.card[0].card  # type: ignore
 
             bytes_obj = io.BytesIO()
-            img.save(bytes_obj, format="WEBP")  # type: ignore
+            img.save(bytes_obj, format="PNG")  # type: ignore
             bytes_obj.seek(0)
 
-        return Response(content=bytes_obj.read(), media_type="image/webp")
+        return Response(content=bytes_obj.read(), media_type="image/png")
     except Exception as e:
         logging.exception("EnkaCard error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
@@ -131,10 +131,10 @@ async def en_card(data: ENCardData) -> Response:
             img = result.card[0].card  # type: ignore
 
             bytes_obj = io.BytesIO()
-            img.save(bytes_obj, format="WEBP")
+            img.save(bytes_obj, format="PNG")
             bytes_obj.seek(0)
 
-        return Response(content=bytes_obj.read(), media_type="image/webp")
+        return Response(content=bytes_obj.read(), media_type="image/png")
     except Exception as e:
         logging.exception("ENCard error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
@@ -152,10 +152,10 @@ async def hattvr_enka_card(data: HattvrEnkaCardData) -> Response:
             im = await asyncio.to_thread(generator.generate_image, showcase, character, client.lang)
 
             bytes_obj = io.BytesIO()
-            im.save(bytes_obj, format="WEBP")
+            im.save(bytes_obj, format="PNG")
             bytes_obj.seek(0)
 
-        return Response(content=bytes_obj.read(), media_type="image/webp")
+        return Response(content=bytes_obj.read(), media_type="image/png")
     except Exception as e:
         logging.exception("Hattvr Enka card error")
         return Response(content=str(e), media_type="text/plain", status_code=500)
