@@ -1099,7 +1099,7 @@ wheels = [
 [[package]]
 name = "starrailcard"
 version = "2.1.5"
-source = { git = "https://github.com/seriaati/StarRailCard?branch=main#93503dd5a0e5fcdacf4beb74228fb12bd0be0a08" }
+source = { git = "https://github.com/seriaati/StarRailCard?branch=main#59234b9fd6b96006b61860ebf4130e642b5c986b" }
 dependencies = [
     { name = "aiofiles" },
     { name = "aiohttp" },
