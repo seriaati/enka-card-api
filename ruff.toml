@@ -1,0 +1,49 @@
+exclude = ["ENCard", "enka_card"]
+line-length = 100
+
+[lint]
+ignore = [
+    "E501",
+    "ANN401",
+    "ANN003",
+    "PLR0913",
+    "PLR2004",
+    "PLR0917",
+    "PLR6301",
+    "ANN002",
+]
+preview = true
+select = [
+    "E",
+    "W",
+    "C90",
+    "F",
+    "UP",
+    "B",
+    "SIM",
+    "I",
+    "N",
+    "TC",
+    "ANN",
+    "ASYNC",
+    "A",
+    "C4",
+    "EM",
+    "FA",
+    "ICN",
+    "G",
+    "PIE",
+    "T20",
+    "ARG",
+    "ERA",
+    "LOG",
+    "PL",
+    "TRY",
+]
+
+[lint.per-file-ignores]
+"ENCard/**/*.py" = ["ALL"]
+"enka_card/**/*.py" = ["ALL"]
+
+[lint.flake8-type-checking]
+quote-annotations = true
