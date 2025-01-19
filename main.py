@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import io
+import logging
 import warnings
 
 import starrailcard
@@ -9,7 +10,6 @@ import uvicorn
 from enkacard import encbanner
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
-from loguru import logger
 from starrailcard.src.api.enka import ApiEnkaNetwork
 
 from ENCard.encard import encard
@@ -20,6 +20,7 @@ from utils import hex_to_rgb, update_enc_characters, update_hsr_characters
 warnings.filterwarnings("ignore")
 
 app = FastAPI()
+logger = logging.getLogger("uvicorn")
 
 
 @app.get("/")
