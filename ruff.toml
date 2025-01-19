@@ -1,5 +1,6 @@
 exclude = ["ENCard", "enka_card"]
 line-length = 100
+target-version = "py311"
 
 [lint]
 ignore = [
