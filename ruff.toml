@@ -1,4 +1,4 @@
-exclude = ["ENCard", "enka_card"]
+extend-exclude = ["ENCard", "enka_card"]
 line-length = 100
 target-version = "py311"
 
@@ -41,10 +41,6 @@ select = [
     "PL",
     "TRY",
 ]
-
-[lint.per-file-ignores]
-"ENCard/**/*.py" = ["ALL"]
-"enka_card/**/*.py" = ["ALL"]
 
 [lint.flake8-type-checking]
 quote-annotations = true
