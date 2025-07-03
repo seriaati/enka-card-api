@@ -3,7 +3,9 @@ from __future__ import annotations
 import asyncio
 import io
 import logging
+import tomllib
 import warnings
+from pathlib import Path
 
 import starrailcard
 import uvicorn
@@ -14,7 +16,7 @@ from starrailcard.src.api.enka import ApiEnkaNetwork
 
 from ENCard.encard import encard
 from enka_card import generator
-from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData  # noqa: TCH001
+from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData
 from utils import hex_to_rgb, update_enc_characters, update_hsr_characters
 
 warnings.filterwarnings("ignore")
@@ -23,9 +25,19 @@ app = FastAPI()
 logger = logging.getLogger("uvicorn")
 
 
+def get_version() -> str:
+    """Get version from pyproject.toml"""
+    try:
+        with Path("pyproject.toml").open("rb") as f:
+            data = tomllib.load(f)
+        return data["project"]["version"]
+    except (FileNotFoundError, KeyError):
+        return "unknown"
+
+
 @app.get("/")
 async def index() -> Response:
-    return Response(content="Enka Card API v1.2.1")
+    return Response(content=f"Enka Card API v{get_version()}")
 
 
 @app.post("/star-rail-card")
