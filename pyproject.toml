@@ -27,7 +27,6 @@ readme = "README.md"
 requires-python = ">=3.11"
 version = "1.3.1"
 
-
 [tool.pyright]
 exclude = [
   ".venv/**/*.py",
@@ -40,3 +39,6 @@ typeCheckingMode = "standard"
 [tool.uv.sources]
 genshin = { git = "https://github.com/thesadru/genshin.py", branch = "master" }
 starrailcard = { git = "https://github.com/seriaati/StarRailCard", branch = "main" }
+
+[dependency-groups]
+dev = ["ruff>=0.12.3"]
