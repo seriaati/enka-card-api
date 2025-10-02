@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from typing import TYPE_CHECKING
 
 from enkanetwork import EnkaNetworkAPI, Language
@@ -59,3 +60,9 @@ async def update_enc_characters(
     characters.append(build.avatar_data)
 
     return characters
+
+
+def setup_logging() -> None:
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )

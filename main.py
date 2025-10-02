@@ -20,9 +20,10 @@ from starrailcard.src.api.enka import ApiEnkaNetwork
 from ENCard.encard import encard
 from enka_card import generator
 from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData
-from utils import hex_to_rgb, update_enc_characters, update_hsr_characters
+from utils import hex_to_rgb, setup_logging, update_enc_characters, update_hsr_characters
 
 load_dotenv()
+setup_logging()
 
 warnings.filterwarnings("ignore")
 sentry_sdk.init(dsn=os.getenv("SENTRY_DSN"), send_default_pii=True)
