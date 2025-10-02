@@ -3,12 +3,15 @@ from __future__ import annotations
 import asyncio
 import io
 import logging
+import os
 import tomllib
 import warnings
 from pathlib import Path
 
+import sentry_sdk
 import starrailcard
 import uvicorn
+from dotenv import load_dotenv
 from enkacard import encbanner
 from enkanetwork import EnkaNetworkAPI, Language
 from fastapi import FastAPI, Response
@@ -19,7 +22,10 @@ from enka_card import generator
 from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData
 from utils import hex_to_rgb, update_enc_characters, update_hsr_characters
 
+load_dotenv()
+
 warnings.filterwarnings("ignore")
+sentry_sdk.init(dsn=os.getenv("SENTRY_DSN"), send_default_pii=True)
 
 app = FastAPI()
 logger = logging.getLogger("uvicorn")
