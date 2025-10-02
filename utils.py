@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import logging
+import pathlib
+import tomllib
 from typing import TYPE_CHECKING
 
 from enkanetwork import EnkaNetworkAPI, Language
@@ -66,3 +68,13 @@ def setup_logging() -> None:
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
+
+
+def get_version() -> str:
+    """Get version from pyproject.toml"""
+    try:
+        with pathlib.Path("pyproject.toml").open("rb") as f:
+            data = tomllib.load(f)
+        return data["project"]["version"]
+    except (FileNotFoundError, KeyError):
+        return "unknown"

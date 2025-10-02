@@ -4,9 +4,7 @@ import asyncio
 import io
 import logging
 import os
-import tomllib
 import warnings
-from pathlib import Path
 
 import sentry_sdk
 import starrailcard
@@ -20,26 +18,22 @@ from starrailcard.src.api.enka import ApiEnkaNetwork
 from ENCard.encard import encard
 from enka_card import generator
 from models import ENCardData, EnkaCardData, HattvrEnkaCardData, StarRailCardData
-from utils import hex_to_rgb, setup_logging, update_enc_characters, update_hsr_characters
+from utils import (
+    get_version,
+    hex_to_rgb,
+    setup_logging,
+    update_enc_characters,
+    update_hsr_characters,
+)
 
 load_dotenv()
 setup_logging()
 
 warnings.filterwarnings("ignore")
-sentry_sdk.init(dsn=os.getenv("SENTRY_DSN"), send_default_pii=True)
+sentry_sdk.init(dsn=os.getenv("SENTRY_DSN"), send_default_pii=True, release=f"v{get_version()}")
 
 app = FastAPI()
 logger = logging.getLogger("uvicorn")
-
-
-def get_version() -> str:
-    """Get version from pyproject.toml"""
-    try:
-        with Path("pyproject.toml").open("rb") as f:
-            data = tomllib.load(f)
-        return data["project"]["version"]
-    except (FileNotFoundError, KeyError):
-        return "unknown"
 
 
 @app.get("/")
