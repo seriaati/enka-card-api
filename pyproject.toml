@@ -5,7 +5,7 @@ dependencies = [
   "asyncache>=0.3.1",
   "beautifulsoup4>=4.12.3",
   "cachetools>=5.5.0",
-  "enkacard>=3.3.8",
+  "enkacard",
   "enkanetworkv2-py>=2.1.4",
   "fake-useragent>=1.5.1",
   "fastapi>=0.114.2",
@@ -40,3 +40,4 @@ typeCheckingMode = "standard"
 
 [tool.uv.sources]
 starrailcard = { git = "https://github.com/seriaati/StarRailCard", branch = "main" }
+enkacard = { git = "https://github.com/seriaati/EnkaCard", branch = "main" }
