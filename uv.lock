@@ -447,7 +447,7 @@ requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.3" },
     { name = "cachetools", specifier = ">=5.5.0" },
     { name = "enkacard", git = "https://github.com/seriaati/EnkaCard?branch=main" },
-    { name = "enkanetworkv2-py", specifier = ">=2.1.4" },
+    { name = "enkanetworkv2-py", git = "https://github.com/seriaati/EnkaNetworkV2.py?branch=main" },
     { name = "fake-useragent", specifier = ">=1.5.1" },
     { name = "fastapi", specifier = ">=0.114.2" },
     { name = "genshin", specifier = ">=1.7.18" },
@@ -485,15 +485,11 @@ dependencies = [
 [[package]]
 name = "enkanetworkv2-py"
 version = "2.1.5"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/seriaati/EnkaNetworkV2.py?branch=main#a9b842c7084db63ae3b7f29abeaf1abecb6f2c2d" }
 dependencies = [
     { name = "aiohttp" },
     { name = "cachetools" },
     { name = "pydantic" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/df/61/c6ce2d8b7bcbe8b35a7383477adb7d3e9a721b37d01d9d048322ef93ac0c/enkanetworkv2.py-2.1.5.tar.gz", hash = "sha256:c77666176dbb775a8c672e905bdf73d82d586af1a59722e0cc83936a46bc40e1", size = 790112, upload-time = "2024-10-22T08:22:02.462Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/2b/4b/9ccb26f572b541e6e3bccc94a524f1376377aba73ecb4bd2ad6a5a7c77f3/enkanetworkv2.py-2.1.5-py3-none-any.whl", hash = "sha256:eb50972061690d56c20934de3ca47af4bae148a47686634263e69c605b1b4bfd", size = 816037, upload-time = "2024-10-22T08:22:00.953Z" },
 ]
 
 [[package]]

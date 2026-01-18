@@ -43,3 +43,4 @@ typeCheckingMode = "standard"
 [tool.uv.sources]
 starrailcard = { git = "https://github.com/seriaati/StarRailCard", branch = "main" }
 enkacard = { git = "https://github.com/seriaati/EnkaCard", branch = "main" }
+enkanetworkv2-py = { git = "https://github.com/seriaati/EnkaNetworkV2.py", branch = "main" }
