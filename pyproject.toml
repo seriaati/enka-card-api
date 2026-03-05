@@ -9,7 +9,7 @@ dependencies = [
   "enkanetworkv2-py>=2.1.4",
   "fake-useragent>=1.5.1",
   "fastapi>=0.114.2",
-  "genshin>=1.7.18",
+  "genshin",
   "matplotlib>=3.9.2",
   "more-itertools>=10.5.0",
   "numpy>=2.1.1",
@@ -44,3 +44,4 @@ typeCheckingMode = "standard"
 starrailcard = { git = "https://github.com/seriaati/StarRailCard", branch = "main" }
 enkacard = { git = "https://github.com/seriaati/EnkaCard", branch = "main" }
 enkanetworkv2-py = { git = "https://github.com/seriaati/EnkaNetworkV2.py", branch = "main" }
+genshin = { git = "https://github.com/seriaati/genshin.py", branch = "master" }
