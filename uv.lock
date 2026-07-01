@@ -484,7 +484,7 @@ dependencies = [
 [[package]]
 name = "enkanetworkv2-py"
 version = "2.1.5"
-source = { git = "https://github.com/seriaati/EnkaNetworkV2.py?branch=main#a9b842c7084db63ae3b7f29abeaf1abecb6f2c2d" }
+source = { git = "https://github.com/seriaati/EnkaNetworkV2.py?branch=main#b85fbe41970c1e03e25e60c939176729ff0b5e9a" }
 dependencies = [
     { name = "aiohttp" },
     { name = "cachetools" },
