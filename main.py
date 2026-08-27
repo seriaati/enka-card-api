@@ -68,7 +68,7 @@ async def star_rail_card(data: StarRailCardData) -> Response:
             api_data = await enka.get()
             if api_data is None:
                 msg = "Failed to get data from API, please try again"
-                raise ValueError(msg)  # noqa: TRY301
+                raise ValueError(msg)  # ruff: ignore[raise-within-try]
 
             if data.owner is not None:
                 api_data.characters = await update_hsr_characters(data, api_data.characters)
