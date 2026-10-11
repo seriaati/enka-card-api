@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.12'",
@@ -522,8 +522,8 @@ dependencies = [
 
 [[package]]
 name = "enkanetworkv2-py"
-version = "2.1.5"
-source = { git = "https://github.com/seriaati/EnkaNetworkV2.py?branch=main#b85fbe41970c1e03e25e60c939176729ff0b5e9a" }
+version = "2.1.6"
+source = { git = "https://github.com/seriaati/EnkaNetworkV2.py?branch=main#04809f23bef4b691e7c9a1fca7bd60fd1bc6fb78" }
 dependencies = [
     { name = "aiohttp" },
     { name = "cachetools" },
